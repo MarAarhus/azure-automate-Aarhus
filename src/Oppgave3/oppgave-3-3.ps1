@@ -11,19 +11,6 @@ $kortstokkJson = $webRequest.content
 $kortstokk = ConvertFrom-Json -InputObject $kortstokkJson
 
 
-# 1. utgave - foreach loop som skriver ut et kort per linje
-#foreach ($kort in $kortstokk) {
-#    Write-Output $kort
-#}
-
-# https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_operators?view=powershell-7.1#subexpression-operator--
-
-# En streng (string) er en array av karakterer @('S','P','A','D','E')
-# 2. utgave - interessert i 1. karakter i merke - (S)PADE - og verdi
-#foreach ($kort in $kortstokk) {
-#    Write-Output "$($kort.suit[0])+$($kort.value)"
-#}
-
 # 3. utgave - ønsker egentlig hele kortstokken som en streng og den koden som en funksjon (gjenbruk)
 
 function kortstokkTilStreng {
