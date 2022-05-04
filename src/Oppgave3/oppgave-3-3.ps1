@@ -23,7 +23,7 @@ function kortstokkTilStreng {
     foreach ($kort in $kortstokk) {
         $streng = $streng + "$($kort.suit[0])" + "$($kort.value),"
     }
-    return $streng
+    return $streng.Substring(0,$streng.Length-1)
 }
 
 
