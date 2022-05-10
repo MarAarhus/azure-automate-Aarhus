@@ -51,7 +51,7 @@ $poengKortstokk = 0
 
 # hva er forskjellen mellom -eq, ieg og ceq?
 # # https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_comparison_operators?view=powershell-7.2
-
+<#
 foreach ($kort in $kortstokk) {
     if ($kort.value -ceq 'J') {
         $poengKortstokk = $poengKortstokk + 10
@@ -71,6 +71,29 @@ foreach ($kort in $kortstokk) {
 }
 
 Write-Host 'Poengsum:' $poengKortstokk
+#>
+
+function sumPoengKortstokk {
+    [OutputType([int])]
+    param (
+        [object[]]
+        $kortstokk
+    )
+
+    $poengKortstokk = 0
+
+    foreach ($kort in $kortstokk) {
+        # Undersøk hva en Switch er
+        $poengKortstokk += switch ($kort.value) {
+            { $_ -cin @('J','K','Q') } { 10 }
+            { $_ -cin @('A')} { 11 }
+            default { $kort.value }
+        }
+    }
+    return $poengKortstokk
+}
+
+Write-Output "Poengsum: $(sumPoengKortstokk -kortstokk $kortstokk)"
 
 #oppg6
 # ...
@@ -78,8 +101,8 @@ Write-Host 'Poengsum:' $poengKortstokk
 
 $meg = $kortstokk[0..1]
 Write-Output "meg: $(kortstokkTilStreng $meg)"
-$kortstokk = $kortstokk[2..$kortstokk.Count]
+$kortstokk = $kortstokk[2..($kortstokk.Count -1)]
 $magnus = $kortstokk[0..1]
 Write-Output "magnus: $(kortstokkTilStreng $magnus)"
-$kortstokk = $kortstokk[2..$kortstokk.Count]
+$kortstokk = $kortstokk[2..($kortstokk.Count -1)]
 Write-Output "Kortstokk:  $(kortstokkTilStreng $kortstokk)"
