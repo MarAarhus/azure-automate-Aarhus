@@ -17,13 +17,6 @@ jobs:
       - name: Run Blackjack script file
         run: ./src/oppgave-10.ps1
 
-{
-  "clientId": "6621d68b-38aa-4257-841c-1018272f6404", //service principal clientID
-  "clientSecret": "73b1f686-24b1-4acc-a636-7aeba529dbc9", // generert secret på service principal
-  "subscriptionId": "9f1b36f0-ab4c-444f-bd67-0b742263c2d6",
-  "tenantId": "62366534-1ec3-4962-8869-9b5535279d0b"
-}
-
       - name: Login via Az module
         uses: azure/login@v1
         with:
